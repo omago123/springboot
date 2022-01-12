@@ -11,40 +11,42 @@ public class HelloController {
 
     @GetMapping("hello")
     public String hello(Model model) {
-        model.addAttribute("data","hello!!");
+        // data 변수에 hello!! 입력
+        model.addAttribute("data", "hello!!");
+        // 해당 html 파일로 이동
         return "hello";
     }
 
     @GetMapping("hello-mvc")
-    public String helloMvc(@RequestParam(value = "name") String name, Model model){
-        model.addAttribute("name",name);
+    public String helloMvc(@RequestParam(value = "name") String name, Model model) {
+        model.addAttribute("name", name);
         return "hello-template";
     }
 
     @GetMapping("hello-string")
     @ResponseBody
-    public String helloString(@RequestParam("name") String name){
+    public String helloString(@RequestParam("name") String name) {
         return "hello " + name; // "hello spring"
     }
 
     @GetMapping("hello-api")
     @ResponseBody
-    public Hello helloApi(@RequestParam("name") String name){
+    public Hello helloApi(@RequestParam("name") String name) {
         Hello hello = new Hello();
         hello.setName(name);
         return hello;
     }
 
-    public static class Hello{
+    public static class Hello {
         private String name;
 
-        public String getName(){
+        public String getName() {
             return name;
         }
 
         public void setName(String name) {
             this.name = name;
         }
-
     }
 }
+
